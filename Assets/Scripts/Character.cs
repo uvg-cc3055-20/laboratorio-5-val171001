@@ -78,6 +78,39 @@ public class Character : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Al llegar al portal cambiamos al siguiente nivel
-        SceneManager.LoadScene("Dungeon2");
+        if(collision.tag == "Portal")
+        {  
+            // Si esta en el nivel uno, pasamos al 2
+            if(SceneManager.GetActiveScene().name == "Dungeon1")
+            {
+                SceneManager.LoadScene("Dungeon2");
+
+            // Si esta en el nivel 2, pasamos al 3
+            } else if (SceneManager.GetActiveScene().name == "Dungeon2")
+            {
+                SceneManager.LoadScene("Dungeon3");
+            }
+
+
+        }
+    }
+
+    // Collision with a Collider
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // SI chici contra un obstaculo
+        if(collision.collider.tag == "Obstaculo")
+        {   
+            // Si esta en el nivel 2, regresamos al nivel 1
+            if(SceneManager.GetActiveScene().name == "Dungeon2")
+            {
+                SceneManager.LoadScene("Dungeon1");
+            
+            // Si esta en el nivel 3, regersamos al nivel 2
+            }else if (SceneManager.GetActiveScene().name == "Dungeon3")
+            {
+                SceneManager.LoadScene("Dungeon2");
+            }
+        }
     }
 }
