@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Character : MonoBehaviour {
 
@@ -30,8 +31,8 @@ public class Character : MonoBehaviour {
     // Layer del mundo
     public LayerMask layerMask;
 
-
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
         // obtenemos los componenetes del personaje
         rb2d = GetComponent<Rigidbody2D>();
@@ -39,9 +40,9 @@ public class Character : MonoBehaviour {
         anim = GetComponent<Animator>();
 
     }
-	
 
-	void Update () {
+    // Update is called once per frame
+    void Update () {
         // Obtenemos si esta presionando un boton para moverse
         float move = Input.GetAxis("Horizontal");
 
@@ -72,4 +73,11 @@ public class Character : MonoBehaviour {
             }
         }
 	}
+
+    // Collision with a trigger
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Al llegar al portal cambiamos al siguiente nivel
+        SceneManager.LoadScene("Dungeon2");
+    }
 }
