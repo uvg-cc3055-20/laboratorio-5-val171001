@@ -56,6 +56,7 @@ public class Character : MonoBehaviour {
 
         // Agregar la velocidad a la animacion
         anim.SetFloat("Speed", Mathf.Abs(move));
+        
 
         // De ser necesario cambiamos hacia donde apunta el personaje
         sr.flipX = !facingRight;
